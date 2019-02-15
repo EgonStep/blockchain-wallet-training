@@ -30,12 +30,17 @@ export class BalanceComponent implements OnInit {
       if (transaction.recipient === owner) {
         total.amount = Number(transaction.amount) + Number(total.amount);
       }
+      /*if (transaction.sender === owner) {
+        total.amount = Number(total.amount) - Number(transaction.amount);
+      }*/
       return total;
     };
-    const chain = this.chain;
+
+    const chain = JSON.parse(JSON.stringify(this.chain));
     const transactions = chain.map((block: Block) => {
       return block.transactions.reduce(transactionReducer, initial);
     });
+
     const balance = transactions.reduce(transactionReducer, initial);
     this.value = balance.amount;
   }

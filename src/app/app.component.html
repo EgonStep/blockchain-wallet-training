@@ -10,8 +10,8 @@
   <button tooltip="Minerar novo Bloco" (click)="onMine()">Mine</button>
   <div>{{ blockchain.pendingTransactions.length }} Pending Transactions</div>
   <nav>
-    <button [routerLink]="['dashboard']">Dashboard</button>
-    <button [routerLink]="['send-transaction']">Send Transaction</button>
+    <button class="btn btn-primary" [routerLink]="['dashboard']">Dashboard</button>
+    <button class="btn btn-primary" [routerLink]="['send-transaction']">Send Transaction</button>
   </nav>
 </header>
 
