@@ -1,15 +1,17 @@
 <header>
-  <h2 [ngClass]="{
-    'valid': isValid,
-    'invalid': !isValid
-  }">BlockChain <button (click)="onMine()">Mine</button></h2>
-  <div>
-    {{blockchain.pendingTransactions.length}} Pending Transactions
-  </div>
+  <h2
+    [ngClass]="{
+      valid: isValid,
+      invalid: !isValid
+    }"
+  >
+    BlockChain
+  </h2>
+  <button tooltip="Minerar novo Bloco" (click)="onMine()">Mine</button>
+  <div>{{ blockchain.pendingTransactions.length }} Pending Transactions</div>
   <nav>
     <button [routerLink]="['dashboard']">Dashboard</button>
     <button [routerLink]="['send-transaction']">Send Transaction</button>
-    <button [routerLink]="['balance']">Balance</button>
   </nav>
 </header>
 
@@ -17,5 +19,5 @@
   <router-outlet></router-outlet>
 </main>
 <pre>
-  {{blockchain | json}}
+  {{ blockchain | json }}
 </pre>

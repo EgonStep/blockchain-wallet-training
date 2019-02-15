@@ -7,9 +7,11 @@ import { Block } from 'projects/blockchain/src/public_api';
   styleUrls: ['./block.component.scss']
 })
 export class BlockComponent implements OnInit {
-  @Input() private block: Block;
+  @Input() block: Block;
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

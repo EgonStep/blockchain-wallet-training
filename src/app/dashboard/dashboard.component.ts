@@ -10,8 +10,8 @@ export class DashboardComponent implements OnInit {
   public blockchain: Blockchain;
 
   constructor(
-    @Inject(BlockchainService) 
-    private blockchainService: BlockchainService 
+    @Inject(BlockchainService)
+    private blockchainService: BlockchainService
   ) { }
 
   ngOnInit() {
