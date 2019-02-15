@@ -3,13 +3,13 @@
     [ngClass]="{
       valid: isValid,
       invalid: !isValid
-    }"
+    }" class=""
   >
     BlockChain
   </h2>
-  <button tooltip="Minerar novo Bloco" (click)="onMine()">Mine</button>
   <div>{{ blockchain.pendingTransactions.length }} Pending Transactions</div>
   <nav>
+    <button class="btn btn-warning" tooltip="Minerar novo Bloco" (click)="onMine()">Mine</button>
     <button class="btn btn-primary" [routerLink]="['dashboard']">Dashboard</button>
     <button class="btn btn-primary" [routerLink]="['send-transaction']">Send Transaction</button>
   </nav>
