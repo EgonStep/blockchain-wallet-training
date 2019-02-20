@@ -19,6 +19,9 @@ export class SendTransactionComponent implements OnInit {
   }
 
   onSend(amount: number, recipient: string) {
+    if (amount === null || recipient === '') {
+      return;
+    }
     const id = this.blockchainService.blockchain.nodeUrl;
     const transaction = new Transaction(amount, id, recipient);
 

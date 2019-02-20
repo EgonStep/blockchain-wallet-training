@@ -10,9 +10,7 @@ import { BlockData } from './models/block-data';
 export class BlockchainService {
   public blockchain: Blockchain;
 
-  constructor(
-    @Inject('GENESIS_BLOCK') GENESIS_BLOCK: Block
-  ) { 
+  constructor(@Inject('GENESIS_BLOCK') GENESIS_BLOCK: Block) {
     this.blockchain = new Blockchain(GENESIS_BLOCK);
   }
 
@@ -31,10 +29,19 @@ export class BlockchainService {
       transactions: this.blockchain.pendingTransactions,
       index: latestBlock.index + 1
     } as Block);
-    const nonce = this.blockchain.proofOfWorkNonce(previousHash, currentBlockData);
-    const hash = this.blockchain.hashBlock(previousHash, currentBlockData, nonce);
-    const block = this.blockchain.newBlock(nonce, previousHash, hash);
-
-    return this.blockchain.validateBlock(block, latestBlock);
+    if (currentBlockData.transactions.length > 0) {
+      const nonce = this.blockchain.proofOfWorkNonce(
+        previousHash,
+        currentBlockData
+      );
+      const hash = this.blockchain.hashBlock(
+        previousHash,
+        currentBlockData,
+        nonce
+      );
+      const block = this.blockchain.newBlock(nonce, previousHash, hash);
+      return this.blockchain.validateBlock(block, latestBlock);
+    }
+    return false;
   }
 }

@@ -1,7 +1,11 @@
-<div>
-  <ul>
-    <li>Index: {{block.index}}</li>
-    <li>Hash: {{block.hash}}</li>
-    <li>Transactions: {{block.transactions.length}}</li>
-  </ul>
-</div>
+<div class="card">
+    <div class="card-header">
+      Block: {{block.index}}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        Transations: {{block.transactions.length}}
+        <footer class="blockquote-footer foHash">Hash: {{block.hash}}</footer>
+      </blockquote>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipModule, ModalModule  } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { SendTransactionComponent } from './send-transaction/send-transaction.co
 import { BalanceComponent } from './balance/balance.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlockComponent } from './block/block.component';
+import { FormsModule } from '@angular/forms';
 
 const GenesisProvider = () => {
   return new Block(1, 12312, [], 'GENESIS', '0ae1234', '00');
@@ -25,7 +26,9 @@ const GenesisProvider = () => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TooltipModule.forRoot()
+    FormsModule,
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [{
     provide: 'GENESIS_BLOCK',

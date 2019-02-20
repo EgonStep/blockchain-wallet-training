@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Block, Transaction } from 'projects/blockchain/src/public_api';
+import { forEach } from '@angular/router/src/utils/collection';
+import { filterQueryId } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-balance',
@@ -23,16 +25,13 @@ export class BalanceComponent implements OnInit {
     this.owner = owner;
     const initial = new Transaction(0, 'system', owner);
 
-    const transactionReducer = (
+    /*const transactionReducer = (
       transaction: Transaction,
       total: Transaction
     ) => {
       if (transaction.recipient === owner) {
         total.amount = Number(transaction.amount) + Number(total.amount);
       }
-      /*if (transaction.sender === owner) {
-        total.amount = Number(total.amount) - Number(transaction.amount);
-      }*/
       return total;
     };
 
@@ -40,8 +39,24 @@ export class BalanceComponent implements OnInit {
     const transactions = chain.map((block: Block) => {
       return block.transactions.reduce(transactionReducer, initial);
     });
-
     const balance = transactions.reduce(transactionReducer, initial);
-    this.value = balance.amount;
+    this.value = transactions.amount;*/
+
+    let total = 0;
+    this.chain.filter((block: Block) => {
+      for (const transaction of block.transactions) {
+        if ( transaction.recipient === initial.recipient) {
+          total += Number(transaction.amount);
+        }
+      }
+    });
+    this.value = total;
+
+    /***
+    let blocksRecipient = this.chain.filter((tot: Block) =>
+      tot.transactions.find(
+        (tot2: Transaction) => tot2.recipient === initial.recipient
+      )
+    );*/
   }
 }

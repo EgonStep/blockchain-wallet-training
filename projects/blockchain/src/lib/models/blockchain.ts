@@ -48,7 +48,7 @@ export class Blockchain {
         let nonce = 0;
         let hash = this.hashBlock(previousHash, currentBlockData, nonce);
 
-        while(hash.substr(0, this.dificulty) !== this.chain[0].hash.substr(0, this.dificulty)){
+        while (hash.substr(0, this.dificulty) !== this.chain[0].hash.substr(0, this.dificulty)) {
             nonce++;
             hash = this.hashBlock(previousHash, currentBlockData, nonce);
         }
@@ -57,13 +57,13 @@ export class Blockchain {
     }
 
     validateBlock(block: Block, previousBlock: Block): boolean {
-        if(block.previousHash !== previousBlock.hash){
+        if (block.previousHash !== previousBlock.hash) {
             return false;
         }
 
         const validatedBlockHash = this.hashBlock(block.previousHash, new BlockData(block), block.nonce);
 
-        if(validatedBlockHash !== block.hash){
+        if (validatedBlockHash !== block.hash) {
             return false;
         }
 
@@ -77,8 +77,8 @@ export class Blockchain {
             const isSameHash = block.hash === this.chain[index].hash;
             const isSamePreviousHash = block.previousHash === this.chain[index].previousHash;
 
-            return !isSameHash 
-            || !isSamePreviousHash 
+            return !isSameHash
+            || !isSamePreviousHash
             || (index > 0 && !this.validateBlock(block, testChain[index - 1]));
         });
 

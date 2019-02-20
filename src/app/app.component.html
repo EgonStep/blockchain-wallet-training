@@ -3,21 +3,63 @@
     [ngClass]="{
       valid: isValid,
       invalid: !isValid
-    }" class=""
+    }"
+    class=""
   >
     BlockChain
   </h2>
-  <div>{{ blockchain.pendingTransactions.length }} Pending Transactions</div>
-  <nav>
-    <button class="btn btn-warning" tooltip="Minerar novo Bloco" (click)="onMine()">Mine</button>
-    <button class="btn btn-primary" [routerLink]="['dashboard']">Dashboard</button>
-    <button class="btn btn-primary" [routerLink]="['send-transaction']">Send Transaction</button>
-  </nav>
 </header>
+<div class="row">
+  <nav class="col-2">
+    <div>
+      <button
+        class="btn btn-warning btn-lg btn-block"
+        tooltip="Mine new Block"
+        (click)="onMine()">Mine</button>
+      <button
+        class="btn btn-primary btn-lg btn-block"
+        [routerLink]="['dashboard']">Dashboard</button>
+      <button
+        class="btn btn-primary btn-lg btn-block"
+        (click)="openModal(template)"
+        [routerLink]="[{ outlets: { modal: ['send-transaction']}}]">Send Transaction</button>
+    </div>
+  </nav>
+  <main role="main" class="col-5">
+    <router-outlet></router-outlet>
+  </main>
+  <div class="col-5">
+    <div class="card-header">
+      {{ blockchain.pendingTransactions.length }} Pending Transactions
+    </div>
+    <div *ngFor="let block of blockchain.pendingTransactions">
+      <div class="card">
+        <div class="card-header">Recipient: {{ block.recipient }}</div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            Amount US$: {{ block.amount }}
+            <footer class="blockquote-footer foHash">
+              Transaction Id: {{ block.id }}
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <!--<pre>{{ blockchain | json }}</pre>-->
+  </div>
+</div>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
-<pre>
-  {{ blockchain | json }}
-</pre>
+<!-- ================= MODAL =================== -->
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button
+        type="button" class="close pull-right" aria-label="Close"
+        (click)="modalRef.hide()"><span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <router-outlet name="modal"></router-outlet>
+    </div>
+  </ng-template>
+<!-- ========================================== -->

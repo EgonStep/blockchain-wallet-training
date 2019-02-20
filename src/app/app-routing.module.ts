@@ -5,8 +5,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanSendGuard } from './can-send.guard';
 
 const routes: Routes = [
-  { path: 'send-transaction', component: SendTransactionComponent, canActivate: [CanSendGuard] },
+  { path: 'send-transaction', component: SendTransactionComponent, canActivate: [CanSendGuard], outlet: 'modal'},
   { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({
