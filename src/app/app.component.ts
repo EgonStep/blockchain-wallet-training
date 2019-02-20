@@ -1,6 +1,6 @@
 import { Component, Inject, TemplateRef } from '@angular/core';
-import { BlockchainService, Blockchain, Transaction } from 'projects/blockchain/src/public_api';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BlockchainService, Blockchain } from 'projects/blockchain/src/public_api';
+import { BsModalRef, BsModalService, AlertComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-root',

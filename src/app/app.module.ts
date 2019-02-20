@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { TooltipModule, ModalModule  } from 'ngx-bootstrap';
+import { TooltipModule, ModalModule, AlertModule } from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +28,8 @@ const GenesisProvider = () => {
     AppRoutingModule,
     FormsModule,
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [{
     provide: 'GENESIS_BLOCK',

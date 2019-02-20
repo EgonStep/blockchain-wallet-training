@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Block, Transaction } from 'projects/blockchain/src/public_api';
-import { forEach } from '@angular/router/src/utils/collection';
-import { filterQueryId } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-balance',

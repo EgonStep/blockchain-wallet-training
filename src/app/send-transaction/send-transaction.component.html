@@ -1,15 +1,13 @@
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Amount</span>
+<div>
+  <div class="form-group">
+    <label>Amount</label>
+    <input #amount type="number" class="form-control" step="0.5" />
   </div>
-  <input #amount type="number" class="form-control" step="0.5" />
-</div>
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Recipient</span>
+  <div class="form-group">
+    <label>Recipient</label>
+    <input #recipient class="form-control" placeholder="Recipient ID" />
   </div>
-  <input #recipient class="form-control" placeholder="Recipient ID" />
+  <button
+    class="btn btn-primary"
+    (click)="onSend(amount.value, recipient.value)">Send</button>
 </div>
-<button class="btn btn-primary" (click)="onSend(amount.value, recipient.value)">
-  Send
-</button>

@@ -1,26 +1,26 @@
-<header>
+<header class="navbar">
   <h2
     [ngClass]="{
       valid: isValid,
       invalid: !isValid
     }"
-    class=""
-  >
-    BlockChain
+    class="">BlockChain
   </h2>
+  <app-balance [chain]="blockchain.chain">
+    </app-balance>
 </header>
 <div class="row">
   <nav class="col-2">
     <div>
+        <div *ngIf="isValid; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock><alert type="success">New block mined!</alert></ng-template>
+        <ng-template #elseBlock><alert type="danger">Need Transaction to mine new block!</alert></ng-template>
       <button
-        class="btn btn-warning btn-lg btn-block"
+        class="btn btn-warning btn-block"
         tooltip="Mine new Block"
         (click)="onMine()">Mine</button>
       <button
-        class="btn btn-primary btn-lg btn-block"
-        [routerLink]="['dashboard']">Dashboard</button>
-      <button
-        class="btn btn-primary btn-lg btn-block"
+        class="btn btn-primary btn-block"
         (click)="openModal(template)"
         [routerLink]="[{ outlets: { modal: ['send-transaction']}}]">Send Transaction</button>
     </div>
@@ -51,15 +51,15 @@
 
 <!-- ================= MODAL =================== -->
 <ng-template #template>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
-      <button
-        type="button" class="close pull-right" aria-label="Close"
-        (click)="modalRef.hide()"><span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <router-outlet name="modal"></router-outlet>
-    </div>
-  </ng-template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button
+      type="button" class="close pull-right" aria-label="Close"
+      (click)="modalRef.hide()"><span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <router-outlet name="modal"></router-outlet>
+  </div>
+</ng-template>
 <!-- ========================================== -->

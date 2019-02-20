@@ -1,9 +1,14 @@
-<div>
-  <input type="text" #owner>
-  <button class="btn btn-danger" (click)='getBalance(owner.value)'>
-    Search
-  </button>
-  <span class="balance">
-    Balance of {{owner.value}}: US$ {{value}}
-  </span>
+<div class="form-inline">
+  <span class="balance input-group-text" *ngIf="value; then thenBlock; else elseBlock"></span>
+  <ng-template #thenBlock>
+    <span class="balance input-group-text"
+      >Balance of {{ owner.value }}: US$ {{ value }}</span>
+  </ng-template>
+  <ng-template #elseBlock>
+    <span class="balance input-group-text">Recipient not found!</span>
+  </ng-template>
+  <input class="form-control" #owner />
+  <button
+    class="btn btn-outline-success my-2 my-sm-0"
+    (click)="getBalance(owner.value)">Search</button>
 </div>
