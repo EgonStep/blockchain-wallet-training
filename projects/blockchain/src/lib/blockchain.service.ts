@@ -1,4 +1,4 @@
-import { Injectable, inject, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Blockchain } from './models/blockchain';
 import { Block } from './models/block';
 import { Transaction } from './models/transaction';

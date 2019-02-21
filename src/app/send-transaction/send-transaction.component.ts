@@ -8,7 +8,6 @@ import { BlockchainService, Transaction } from 'projects/blockchain/src/public_a
 })
 export class SendTransactionComponent implements OnInit {
   @Input() private valorDaVariavel: string;
-
   public variavel: string;
 
   constructor(@Inject(BlockchainService)
