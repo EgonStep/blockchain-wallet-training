@@ -1,5 +1,8 @@
 import { Component, Inject, TemplateRef } from '@angular/core';
-import { BlockchainService, Blockchain } from 'projects/blockchain/src/public_api';
+import {
+  BlockchainService,
+  Blockchain
+} from 'projects/blockchain/src/public_api';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
@@ -9,6 +12,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 })
 export class AppComponent {
   title = 'blockchain-wallet-training';
+  modalTitle = 'Modal';
   public blockchain: Blockchain;
   public isValid: boolean;
   public modalRef: BsModalRef;
@@ -16,9 +20,10 @@ export class AppComponent {
   constructor(
     @Inject(BlockchainService)
     private blockchainService: BlockchainService,
-    private modalService: BsModalService) {
-      this.blockchain = this.blockchainService.blockchain;
-      this.isValid = this.blockchain.isValidChain(this.blockchain);
+    private modalService: BsModalService
+  ) {
+    this.blockchain = this.blockchainService.blockchain;
+    this.isValid = this.blockchain.isValidChain(this.blockchain);
   }
 
   openModal(template: TemplateRef<any>) {
@@ -26,6 +31,10 @@ export class AppComponent {
   }
 
   onMine(): boolean {
-    return this.isValid = this.blockchainService.mine();
+    return (this.isValid = this.blockchainService.mine());
+  }
+
+  changeTitle(title: string) {
+    this.modalTitle = title;
   }
 }

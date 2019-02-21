@@ -21,8 +21,14 @@
         (click)="onMine()">Mine</button>
       <button
         class="btn btn-primary btn-block"
-        (click)="openModal(template)"
+        [routerLink]="['dashboard']">Dashboard</button>
+      <button
+        class="btn btn-primary btn-block"
+        (click)="openModal(template); changeTitle('Send Transactions')"
         [routerLink]="[{ outlets: { modal: ['send-transaction']}}]">Send Transactions</button>
+      <button
+        class="btn btn-primary btn-block"
+        [routerLink]="['users']">Recipients Info</button>
     </div>
   </nav>
   <main role="main" class="col-5">
@@ -52,7 +58,7 @@
 <!-- ================= MODAL =================== -->
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
     <button
       type="button" class="close pull-right" aria-label="Close"
       (click)="modalRef.hide()"><span aria-hidden="true">&times;</span>

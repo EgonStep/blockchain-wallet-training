@@ -10,8 +10,9 @@ export class SendTransactionComponent implements OnInit {
   @Input() private valorDaVariavel: string;
   public variavel: string;
 
-  constructor(@Inject(BlockchainService)
-  private blockchainService: BlockchainService) { }
+  constructor(
+    @Inject(BlockchainService)
+    private blockchainService: BlockchainService) { }
 
   ngOnInit() {
     this.variavel = this.valorDaVariavel;
