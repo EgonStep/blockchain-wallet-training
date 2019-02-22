@@ -8,7 +8,8 @@ import { Blockchain, BlockchainService } from 'projects/blockchain/src/public_ap
 })
 export class UsersComponent implements OnInit {
   public blockchain: Blockchain;
-  public recipients: string[] = [];
+  public recipients: any[] = [];
+  public array: any[] = [];
 
   constructor(
     @Inject(BlockchainService)
@@ -16,13 +17,14 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.generateUsers();
   }
 
   generateUsers() {
     this.blockchain = this.blockchainService.blockchain;
     for (const blocks of this.blockchain.chain) {
-      this.recipients = blocks.transactions.map(item => item.recipient)
-        .filter((value, index, self) => self.indexOf(value) === index);
+      this.recipients.push(blocks.transactions.map(item => item.recipient)
+        .filter((value, index, self) => self.indexOf(value) === index));
     }
   }
 }

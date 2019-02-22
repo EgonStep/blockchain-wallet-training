@@ -1,5 +1,5 @@
 <div class="form-inline">
-  <span class="balance input-group-text" *ngIf="value; then thenBlock; else elseBlock"></span>
+  <span *ngIf="value; then thenBlock; else elseBlock"></span>
   <ng-template #thenBlock>
     <span class="balance input-group-text"
       >Balance of {{ owner.value }}: US$ {{ value }}</span>
@@ -9,6 +9,6 @@
   </ng-template>
   <input class="form-control" #owner />
   <button
-    class="btn btn-outline-success my-2 my-sm-0"
+    class="btn btn-success my-2 my-sm-0"
     (click)="getBalance(owner.value)">Search</button>
 </div>

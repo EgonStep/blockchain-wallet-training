@@ -49,12 +49,5 @@ export class BalanceComponent implements OnInit {
       }
     });
     this.value = total;
-
-    /***
-    let blocksRecipient = this.chain.filter((tot: Block) =>
-      tot.transactions.find(
-        (tot2: Transaction) => tot2.recipient === initial.recipient
-      )
-    );*/
   }
 }

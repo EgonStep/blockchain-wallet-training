@@ -13,8 +13,8 @@
   <nav class="col-2">
     <div>
         <div *ngIf="isValid; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock><alert type="success">New block mined!</alert></ng-template>
-        <ng-template #elseBlock><alert type="danger">Need Transaction to mine new block!</alert></ng-template>
+        <ng-template #thenBlock><alert type="success" [dismissible]="true">New block!</alert></ng-template>
+        <ng-template #elseBlock><alert type="danger" [dismissible]="true">Transactions needed!</alert></ng-template>
       <button
         class="btn btn-warning btn-block"
         tooltip="Mine new Block"
