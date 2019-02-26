@@ -26,7 +26,7 @@ export class BlockchainService {
     return this.blockchain.chain.map((block: Block) => block.transactions);
   }
 
-  getRecipients(transactions: any) {
+  getRecipients(transactions: Transaction[]) {
     return transactions.map((transaction: Transaction) => transaction.recipient);
   }
 
