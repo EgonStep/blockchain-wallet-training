@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Blockchain, BlockchainService } from 'projects/blockchain/src/public_api';
+import { Blockchain, BlockchainService, Transaction, Block } from 'projects/blockchain/src/public_api';
 
 @Component({
   selector: 'app-users',
@@ -21,11 +21,11 @@ export class UsersComponent implements OnInit {
   }
 
   generateUsers() {
-    this.blockchain = this.blockchainService.blockchain;
-    for (const blocks of this.blockchain.chain) {
-      this.recipients.push(blocks.transactions.map(item => item.recipient)
-        .filter((value, index, self) => self.indexOf(value) === index));
-    }
+    const mappedTransactions = this.blockchainService.getAllTransactions();
+    const transactions = mappedTransactions.concat.apply([], mappedTransactions);
+    const recipients = this.blockchainService.getRecipients(transactions);
+
+    this.recipients = recipients.filter((value: string, index: number, self: string) => self.indexOf(value) === index);
   }
 }
 

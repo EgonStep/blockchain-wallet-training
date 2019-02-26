@@ -22,6 +22,14 @@ export class BlockchainService {
     return this.blockchain.addTransactionToPending(transaction);
   }
 
+  getAllTransactions() {
+    return this.blockchain.chain.map((block: Block) => block.transactions);
+  }
+
+  getRecipients(transactions: any) {
+    return transactions.map((transaction: Transaction) => transaction.recipient);
+  }
+
   mine(): boolean {
     const latestBlock = this.blockchain.getLatestBlock();
     const previousHash = latestBlock.hash;
