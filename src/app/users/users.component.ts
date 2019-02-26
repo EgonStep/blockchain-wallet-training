@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
     const transactions = mappedTransactions.concat.apply([], mappedTransactions);
     const recipients = this.blockchainService.getRecipients(transactions);
 
-    this.recipients = recipients.filter((value: string, index: number, self: string) => self.indexOf(value) === index);
+    this.recipients = recipients.filter((value: string, index: number, self: string[]) => self.indexOf(value) === index);
   }
 }
 
