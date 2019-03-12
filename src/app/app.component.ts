@@ -1,9 +1,9 @@
-import { Component, Inject, TemplateRef } from '@angular/core';
+import { Component, Inject, TemplateRef, EventEmitter } from '@angular/core';
 import {
   BlockchainService,
   Blockchain
 } from 'projects/blockchain/src/public_api';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +16,18 @@ export class AppComponent {
   public blockchain: Blockchain;
   public isValid: boolean;
   public modalRef: BsModalRef;
+  public modalOpenEvent = new EventEmitter();
 
   constructor(
     @Inject(BlockchainService)
     private blockchainService: BlockchainService,
-    private modalService: BsModalService
   ) {
     this.blockchain = this.blockchainService.blockchain;
     this.isValid = this.blockchain.isValidChain(this.blockchain);
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openModal() {
+    this.modalOpenEvent.emit('open');
   }
 
   onMine(): boolean {
