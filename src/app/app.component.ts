@@ -3,7 +3,7 @@ import {
   BlockchainService,
   Blockchain
 } from 'projects/blockchain/src/public_api';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +17,16 @@ export class AppComponent {
   public isValid: boolean;
   public modalRef: BsModalRef;
   public modalOpenEvent = new EventEmitter();
+
   constructor(
     @Inject(BlockchainService)
     private blockchainService: BlockchainService,
-    private modalService: BsModalService
   ) {
     this.blockchain = this.blockchainService.blockchain;
     this.isValid = this.blockchain.isValidChain(this.blockchain);
   }
 
-  openModal(template: TemplateRef<any>) {
-    // this.modalRef = this.modalService.show(template);
+  openModal() {
     this.modalOpenEvent.emit('open');
   }
 
@@ -37,9 +36,5 @@ export class AppComponent {
 
   changeTitle(title: string) {
     this.modalTitle = title;
-  }
-
-  onMainClicked(e: any) {
-    console.log('onMainClicked do app.component ', e);
   }
 }

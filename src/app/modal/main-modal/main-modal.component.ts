@@ -13,6 +13,7 @@ export class MainModalComponent implements OnInit {
   @Input() openEvent: EventEmitter<string>;
   @Output() mainClicked: EventEmitter<{ state: any }> = new EventEmitter();
   @ViewChild(ModalDirective) modal: ModalDirective;
+
   public modalRef: BsModalRef;
 
   config: ModalOptions = {
@@ -21,14 +22,12 @@ export class MainModalComponent implements OnInit {
     keyboard: false,
   };
 
-
   constructor(private modalService: BsModalService) { }
+
   ngOnInit() {
     this.openEvent.subscribe((command: string) => {
-      console.log('openEvent recebido na main-modal ', command);
       if (command === 'open') {
         this.modal.show();
-        console.log(this.modal);
       }
     });
   }
@@ -40,5 +39,8 @@ export class MainModalComponent implements OnInit {
 
   openModal(template: ElementRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+  hideChildModal() {
+    this.modal.hide();
   }
 }
