@@ -1,4 +1,4 @@
-import { Component, Inject, TemplateRef } from '@angular/core';
+import { Component, Inject, TemplateRef, EventEmitter } from '@angular/core';
 import {
   BlockchainService,
   Blockchain
@@ -16,7 +16,7 @@ export class AppComponent {
   public blockchain: Blockchain;
   public isValid: boolean;
   public modalRef: BsModalRef;
-
+  public modalOpenEvent = new EventEmitter();
   constructor(
     @Inject(BlockchainService)
     private blockchainService: BlockchainService,
@@ -27,7 +27,8 @@ export class AppComponent {
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+    // this.modalRef = this.modalService.show(template);
+    this.modalOpenEvent.emit('open');
   }
 
   onMine(): boolean {
@@ -36,5 +37,9 @@ export class AppComponent {
 
   changeTitle(title: string) {
     this.modalTitle = title;
+  }
+
+  onMainClicked(e: any) {
+    console.log('onMainClicked do app.component ', e);
   }
 }

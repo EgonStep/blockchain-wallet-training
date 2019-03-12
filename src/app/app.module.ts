@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlockComponent } from './block/block.component';
 import { FormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
+import { MainModalComponent } from './modal/main-modal/main-modal.component';
 
 const GenesisProvider = () => {
   return new Block(1, 12312, [], 'GENESIS', '0ae1234', '00');
@@ -23,7 +24,8 @@ const GenesisProvider = () => {
     BalanceComponent,
     DashboardComponent,
     BlockComponent,
-    UsersComponent
+    UsersComponent,
+    MainModalComponent
   ],
   imports: [
     BrowserModule,

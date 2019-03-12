@@ -1,0 +1,15 @@
+<div bsModal #myModal="bs-modal" [config]="{show: false}" class="modal">
+    <div class="modal-dialog please-wait-dialog modal-sm">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button
+          type="button" class="close pull-right" aria-label="Close"
+          (click)="mainClick()"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi ipsam est atque eius illum ullam soluta optio quia numquam fuga voluptatum, esse architecto rem quos vel repellat quasi enim quae?
+        <!-- <app-send-transaction></app-send-transaction> -->
+      </div>
+    </div>
+</div>
